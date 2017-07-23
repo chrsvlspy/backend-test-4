@@ -1,0 +1,8 @@
+%ul
+  %li= direction_and_date(call)
+  %li= "From: #{call.from} (#{call.from_country})"
+  %li= "To: #{call.to} (#{call.to_country})"
+  %li= "Duration: #{duration(call)}"
+  %li= "Status: #{call.status}"
+  - if call.has_voicemail?
+    %li= link_to_voicemail(call)

@@ -10,11 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170719183956) do
+ActiveRecord::Schema.define(version: 20170723091157) do
 
   create_table "calls", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "sid"
+    t.integer "status", default: 0
+    t.integer "direction", default: 0
+    t.string "from"
+    t.string "to"
+    t.string "from_country"
+    t.string "to_country"
+    t.integer "duration", default: 0
+    t.string "voicemail_file_url"
+    t.integer "voicemail_duration", default: 0
+    t.index ["sid"], name: "index_calls_on_sid", unique: true
   end
 
 end

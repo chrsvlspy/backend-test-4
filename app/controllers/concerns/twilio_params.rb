@@ -27,9 +27,12 @@ module TwilioParams
                                        :Direction, :CallSid, :CallStatus,
                                        :RecordingUrl, :RecordingDuration)
     CALL_ATTRIBUTES_MAPPING.each do |webhook_key, call_key|
-      next if unconverted_params[webhook_key].blank?
-      value = unconverted_params.delete(webhook_key)
-      unconverted_params[call_key] = value
+      if unconverted_params[webhook_key].blank?
+        unconverted_params.delete(webhook_key)
+        next
+      else
+        unconverted_params[call_key] = unconverted_params.delete(webhook_key)
+      end
     end
     unconverted_params
   end

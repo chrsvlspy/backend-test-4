@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# This module cleans the webhooks parameters by converting them to the Call model's attributes
 module TwilioParams
   include ActiveSupport::Concern
 

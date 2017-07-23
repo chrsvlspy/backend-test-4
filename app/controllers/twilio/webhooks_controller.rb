@@ -21,7 +21,7 @@ class Twilio::WebhooksController < ApplicationController
     render xml: gather.to_s
   end
 
-  AGENT_NUMBER = '+33123456789'
+  TESTING_NUMBER = '+33123456789'
   def connect_to_agent
     pressed_digit = params['Digits']
     unless AUTHORIZER_CONNECTION_KEYS.include?(pressed_digit)
@@ -30,7 +30,7 @@ class Twilio::WebhooksController < ApplicationController
     call_from_sid.update_attributes(status: webhook_params.fetch(:status))
     connect = if pressed_digit == CONNECT_TO_AGENT_KEY
                 Twilio::TwiML::VoiceResponse.new do |r|
-                  r.dial(number: AGENT_NUMBER)
+                  r.dial(number: TESTING_NUMBER)
                   r.say('The call failed or the remote party hung up. Goodbye.')
                 end
               else

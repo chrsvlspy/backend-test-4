@@ -13,7 +13,11 @@ module CallsHelper
   end
 
   def duration(call)
-    Time.at(call.duration).utc.strftime('%H:%M:%S')
+    if call.status.completed?
+      Time.at(call.duration).utc.strftime('%H:%M:%S')
+    else
+      '-'
+    end
   end
 
   def link_to_voicemail(call)

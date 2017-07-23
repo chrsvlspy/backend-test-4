@@ -29,7 +29,7 @@ module TwilioParams
     CALL_ATTRIBUTES_MAPPING.each do |webhook_key, call_key|
       next if unconverted_params[webhook_key].blank?
       value = unconverted_params.delete(webhook_key)
-      unconverted_params[call_key] = value.underscore
+      unconverted_params[call_key] = value
     end
     unconverted_params
   end

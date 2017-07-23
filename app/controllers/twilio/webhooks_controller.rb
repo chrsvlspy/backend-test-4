@@ -27,7 +27,7 @@ class Twilio::WebhooksController < ApplicationController
     unless AUTHORIZER_CONNECTION_KEYS.include?(pressed_digit)
       return redirect_to connect_to_agent_twilio_webhooks_path
     end
-    call_from_sid.update_attributes(status: webhook_params.fetch(:status))
+    call_from_sid.update_attributes(status: Call::IN_PROGRESS_STATUS)
     connect = if pressed_digit == CONNECT_TO_AGENT_KEY
                 Twilio::TwiML::VoiceResponse.new do |r|
                   r.dial(number: TESTING_NUMBER)

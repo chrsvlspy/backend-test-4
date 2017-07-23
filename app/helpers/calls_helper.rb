@@ -13,7 +13,7 @@ module CallsHelper
   end
 
   def duration(call)
-    if call.status.completed?
+    if call.completed?
       Time.at(call.duration).utc.strftime('%H:%M:%S')
     else
       '-'
